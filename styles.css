@@ -25,6 +25,21 @@ h1, h2, h3 {
     line-height: 1.2;
 }
 
+.section-headline {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    margin-bottom: 60px;
+    font-weight: 800;
+}
+
+.section-text {
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    line-height: 1.6;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+    font-weight: 400;
+}
+
 /* Links */
 a {
     text-decoration: none;
@@ -36,36 +51,26 @@ a {
 .divider {
     height: 1px;
     background: linear-gradient(to right, transparent, #ccc, transparent);
-    margin: 60px 0;
-}
-
-/* Eyebrow text */
-.eyebrow {
-    font-size: 0.9rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: #666;
-    margin-bottom: 20px;
+    margin: 80px 0;
 }
 
 /* SECTION 1 — HERO */
 .hero {
     text-align: center;
-    padding: 120px 0;
+    padding: 160px 0;
 }
 
 .headline {
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
     margin-bottom: 40px;
     font-weight: 800;
     letter-spacing: -0.02em;
 }
 
 .subtext {
-    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
     color: #666;
-    margin-bottom: 50px;
+    margin-bottom: 60px;
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
@@ -74,14 +79,14 @@ a {
 
 .cta-container {
     display: flex;
-    gap: 20px;
+    gap: 30px;
     justify-content: center;
     flex-wrap: wrap;
 }
 
 .cta-primary {
     display: inline-block;
-    padding: 18px 40px;
+    padding: 20px 40px;
     background: #000;
     color: #fff;
     border: 2px solid #000;
@@ -93,12 +98,12 @@ a {
 .cta-primary:hover {
     background: #fff;
     color: #000;
-    transform: translateY(-2px) scale(1.02);
+    transform: translateY(-2px);
 }
 
 .cta-secondary {
     display: inline-block;
-    padding: 18px 40px;
+    padding: 20px 40px;
     background: transparent;
     color: #000;
     border: 2px solid #000;
@@ -113,94 +118,46 @@ a {
     transform: translateY(-2px);
 }
 
-/* SECTION 2 — SOCIAL PROOF */
-.social-proof {
+/* LANDING PAGE STYLES */
+.landing-hero {
     text-align: center;
-    padding: 100px 0;
+    padding: 160px 0;
 }
 
-.social-proof-headline {
-    font-size: clamp(1.8rem, 3.5vw, 2.2rem);
-    margin-bottom: 50px;
-    font-weight: 700;
-}
-
-.metrics-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 40px;
-    margin: 0 auto;
-    max-width: 1000px;
-}
-
-.metric-block {
-    text-align: center;
-    padding: 30px 20px;
-    border: 1px solid #f0f0f0;
-    transition: all 0.3s ease;
-}
-
-.metric-block:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
-}
-
-.metric-value {
-    font-size: 2.5rem;
-    font-weight: 900;
-    color: #000;
-    margin-bottom: 10px;
-}
-
-.metric-label {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 8px;
-}
-
-.metric-caption {
-    font-size: 0.9rem;
-    color: #666;
-    line-height: 1.4;
-}
-
-/* SECTION 2 — AUTHORITY */
-.authority {
-    text-align: center;
-    padding: 100px 0;
-}
-
-.authority-headline {
-    font-size: clamp(2rem, 4vw, 2.5rem);
-    margin-bottom: 30px;
+.landing-headline {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    margin-bottom: 40px;
     font-weight: 800;
+    letter-spacing: -0.02em;
 }
 
-.authority-text {
+.landing-subtext {
     font-size: clamp(1.1rem, 2vw, 1.3rem);
-    line-height: 1.6;
-    color: #333;
-    max-width: 800px;
-    margin: 0 auto 40px;
+    color: #666;
+    margin-bottom: 50px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
     font-weight: 400;
 }
 
-.authority-bullets {
+.landing-bullets {
     list-style: none;
     max-width: 600px;
-    margin: 0 auto;
+    margin: 0 auto 60px;
 }
 
-.authority-bullets li {
-    font-size: 1.1rem;
+.landing-bullets li {
+    font-size: 1.2rem;
     margin-bottom: 20px;
-    padding-left: 25px;
+    padding-left: 30px;
     position: relative;
     font-weight: 500;
+    color: #333;
 }
 
-.authority-bullets li::before {
-    content: '—';
+.landing-bullets li::before {
+    content: '✓';
     position: absolute;
     left: 0;
     top: 0;
@@ -208,115 +165,18 @@ a {
     color: #000;
 }
 
-/* SECTION 3 — PILLARS */
-.pillars {
-    padding: 100px 0;
-}
-
-.section-title {
-    text-align: center;
-    font-size: clamp(2rem, 4vw, 2.5rem);
-    margin-bottom: 60px;
-    font-weight: 800;
-}
-
-.pillars-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
-    margin-top: 60px;
-}
-
-.pillar {
-    text-align: center;
-    padding: 40px 20px;
-}
-
-.pillar-title {
-    font-size: 1.5rem;
+.landing-cta {
     margin-bottom: 20px;
-    font-weight: 700;
 }
 
-.pillar-desc {
-    font-size: 1.1rem;
-    color: #666;
-    line-height: 1.6;
-    font-weight: 400;
-}
-
-/* SECTION 4 — PROCESS */
-.process {
-    padding: 100px 0;
-    background: #f7f7f7;
-}
-
-.process-steps {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 50px;
-    margin-top: 60px;
-}
-
-.step {
+.landing-form {
     text-align: center;
+    padding: 120px 0;
 }
 
-.step-number {
-    width: 60px;
-    height: 60px;
-    border: 2px solid #000;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 20px;
-    font-size: 1.5rem;
-    font-weight: 700;
-    transition: all 0.3s ease;
-}
-
-.step:hover .step-number {
-    background: #000;
-    color: #fff;
-    transform: scale(1.1);
-}
-
-.step-title {
-    font-size: 1.3rem;
-    margin-bottom: 15px;
-    font-weight: 700;
-}
-
-.step-desc {
-    font-size: 1rem;
-    color: #666;
-    line-height: 1.6;
-    font-weight: 400;
-}
-
-/* SECTION 5 — CONTACT FORM */
-.contact-form {
-    text-align: center;
-    padding: 100px 0;
-}
-
-.form-headline {
-    font-size: clamp(2rem, 4vw, 2.5rem);
-    margin-bottom: 30px;
-    font-weight: 800;
-}
-
-.form-subtext {
-    font-size: 1rem;
-    color: #666;
-    margin-bottom: 50px;
-    font-style: italic;
-}
-
-.contact-form-wrapper {
+.strategy-form {
     max-width: 800px;
-    margin: 0 auto;
+    margin: 60px auto 0;
     text-align: left;
 }
 
@@ -333,6 +193,181 @@ a {
 
 .form-group.full-width {
     grid-column: 1 / -1;
+}
+
+.form-submit {
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.form-note {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 15px;
+    font-style: italic;
+    text-align: center;
+}
+
+/* THANK YOU PAGE STYLES */
+.thank-you {
+    text-align: center;
+    padding: 200px 0;
+}
+
+.thank-you-headline {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    margin-bottom: 40px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.thank-you-text {
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    color: #666;
+    margin-bottom: 50px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 400;
+}
+
+/* SECTION 2 — THE PROBLEM */
+.problem {
+    text-align: center;
+    padding: 120px 0;
+}
+
+.problem-list {
+    list-style: none;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.problem-list li {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    padding-left: 30px;
+    position: relative;
+    font-weight: 500;
+    color: #333;
+}
+
+.problem-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: 700;
+    color: #000;
+}
+
+/* SECTION 3 — REVENUE FRAMEWORK */
+.framework {
+    text-align: center;
+    padding: 120px 0;
+    background: #fafafa;
+}
+
+.framework-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 60px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.framework-item {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.framework-title {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: #000;
+}
+
+.framework-desc {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+/* SECTION 4 — WHO WE WORK WITH */
+.who-we-work-with {
+    text-align: center;
+    padding: 120px 0;
+}
+
+.partners-list {
+    list-style: none;
+    max-width: 600px;
+    margin: 30px auto;
+}
+
+.partners-list li {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    padding-left: 25px;
+    position: relative;
+    font-weight: 500;
+    color: #333;
+}
+
+.partners-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: 700;
+    color: #000;
+}
+
+.exclusion-text {
+    font-size: 1rem;
+    color: #666;
+    font-style: italic;
+    max-width: 600px;
+    margin: 40px auto 0;
+}
+
+/* SECTION 5 — FREE STRATEGY CALL */
+.strategy-call {
+    text-align: center;
+    padding: 120px 0;
+}
+
+.call-list {
+    list-style: none;
+    max-width: 500px;
+    margin: 30px auto;
+}
+
+.call-list li {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    padding-left: 25px;
+    position: relative;
+    font-weight: 500;
+    color: #333;
+}
+
+.call-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: 700;
+    color: #000;
+}
+
+.contact-form {
+    max-width: 500px;
+    margin: 60px auto 0;
+    text-align: left;
 }
 
 label {
@@ -353,57 +388,28 @@ input, select, textarea {
     transition: all 0.3s ease;
 }
 
+textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
 input:focus, select:focus, textarea:focus {
     outline: none;
     border-color: #000;
     box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
 }
 
-textarea {
-    resize: vertical;
-    min-height: 120px;
-}
-
-.contact-form-wrapper .cta-primary {
-    margin-top: 20px;
+.contact-form .cta-primary {
     width: 100%;
-    padding: 18px 50px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.contact-form-wrapper .cta-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-.form-privacy {
-    font-size: 0.85rem;
-    color: #666;
-    margin-top: 15px;
-    font-style: italic;
+    margin-top: 20px;
     text-align: center;
-}
-
-/* SECTION 5 — FINAL CTA */
-.final-cta {
-    text-align: center;
-    padding: 100px 0;
-}
-
-.final-headline {
-    font-size: clamp(2rem, 4vw, 3rem);
-    margin-bottom: 40px;
-    font-weight: 800;
-    letter-spacing: -0.02em;
 }
 
 /* FOOTER */
 .footer {
     text-align: center;
-    padding: 40px 0;
+    padding: 60px 0;
     border-top: 1px solid #eee;
-    background-color: #f7f7f7;
 }
 
 .footer p {
@@ -418,28 +424,21 @@ textarea {
         padding: 0 15px;
     }
     
-    .hero {
-        padding: 100px 0;
+    .hero,
+    .landing-hero {
+        padding: 120px 0;
     }
     
-    .social-proof {
-        padding: 60px 0;
+    .problem,
+    .framework,
+    .who-we-work-with,
+    .strategy-call,
+    .landing-form {
+        padding: 80px 0;
     }
     
-    .authority {
-        padding: 60px 0;
-    }
-    
-    .pillars {
-        padding: 60px 0;
-    }
-    
-    .process {
-        padding: 60px 0;
-    }
-    
-    .contact-form {
-        padding: 100px 0;
+    .thank-you {
+        padding: 160px 0;
     }
     
     .cta-container {
@@ -453,32 +452,31 @@ textarea {
         max-width: 300px;
     }
     
+    .framework-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .problem-list,
+    .partners-list,
+    .call-list,
+    .landing-bullets {
+        max-width: 100%;
+    }
+    
+    .contact-form,
+    .strategy-form {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+    
     .form-row {
         grid-template-columns: 1fr;
         gap: 20px;
     }
     
-    .contact-form-wrapper {
-        padding: 0 10px;
-    }
-    
-    .metrics-grid {
-        grid-template-columns: 1fr;
-        gap: 25px;
-    }
-    
-    .process-steps {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-    
-    .pillars-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-    
     .divider {
-        margin: 40px 0;
+        margin: 60px 0;
     }
 }
 
@@ -487,25 +485,25 @@ textarea {
         font-size: 16px;
     }
     
-    .hero {
-        padding: 60px 0;
+    .hero,
+    .landing-hero {
+        padding: 80px 0;
     }
     
-    .pillar {
+    .framework-item {
         padding: 30px 15px;
     }
     
-    .metric-block {
-        padding: 25px 15px;
-    }
-    
-    .metric-value {
-        font-size: 2rem;
+    .problem-list li,
+    .partners-list li,
+    .call-list li,
+    .landing-bullets li {
+        font-size: 1.1rem;
     }
     
     .cta-primary,
     .cta-secondary {
-        padding: 16px 32px;
+        padding: 18px 32px;
         font-size: 15px;
     }
 }
@@ -520,18 +518,4 @@ a:focus,
 button:focus {
     outline: 2px solid #000;
     outline-offset: 2px;
-}
-
-/* Hover states for touch devices */
-@media (hover: hover) {
-    .pillar:hover .pillar-title {
-        transform: translateY(-2px);
-        transition: transform 0.3s ease;
-    }
-    
-    .step:hover .step-number {
-        background: #000;
-        color: #fff;
-        transition: all 0.3s ease;
-    }
 }
