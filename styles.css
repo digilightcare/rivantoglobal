@@ -39,6 +39,16 @@ a {
     margin: 60px 0;
 }
 
+/* Eyebrow text */
+.eyebrow {
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #666;
+    margin-bottom: 20px;
+}
+
 /* SECTION 1 — HERO */
 .hero {
     text-align: center;
@@ -47,7 +57,7 @@ a {
 
 .headline {
     font-size: clamp(2.5rem, 5vw, 4rem);
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     font-weight: 800;
     letter-spacing: -0.02em;
 }
@@ -56,7 +66,7 @@ a {
     font-size: clamp(1.1rem, 2vw, 1.4rem);
     color: #666;
     margin-bottom: 50px;
-    max-width: 800px;
+    max-width: 700px;
     margin-left: auto;
     margin-right: auto;
     font-weight: 400;
@@ -83,7 +93,7 @@ a {
 .cta-primary:hover {
     background: #fff;
     color: #000;
-    transform: translateY(-2px);
+    transform: translateY(-2px) scale(1.02);
 }
 
 .cta-secondary {
@@ -103,24 +113,104 @@ a {
     transform: translateY(-2px);
 }
 
+/* SECTION 2 — SOCIAL PROOF */
+.social-proof {
+    text-align: center;
+    padding: 100px 0;
+}
+
+.social-proof-headline {
+    font-size: clamp(1.8rem, 3.5vw, 2.2rem);
+    margin-bottom: 50px;
+    font-weight: 700;
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    margin: 0 auto;
+    max-width: 1000px;
+}
+
+.metric-block {
+    text-align: center;
+    padding: 30px 20px;
+    border: 1px solid #f0f0f0;
+    transition: all 0.3s ease;
+}
+
+.metric-block:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+}
+
+.metric-value {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+.metric-label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.metric-caption {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.4;
+}
+
 /* SECTION 2 — AUTHORITY */
 .authority {
     text-align: center;
-    padding: 80px 0;
+    padding: 100px 0;
+}
+
+.authority-headline {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    margin-bottom: 30px;
+    font-weight: 800;
 }
 
 .authority-text {
-    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
     line-height: 1.6;
     color: #333;
-    max-width: 900px;
-    margin: 0 auto;
+    max-width: 800px;
+    margin: 0 auto 40px;
     font-weight: 400;
+}
+
+.authority-bullets {
+    list-style: none;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.authority-bullets li {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    padding-left: 25px;
+    position: relative;
+    font-weight: 500;
+}
+
+.authority-bullets li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: 700;
+    color: #000;
 }
 
 /* SECTION 3 — PILLARS */
 .pillars {
-    padding: 80px 0;
+    padding: 100px 0;
 }
 
 .section-title {
@@ -157,14 +247,14 @@ a {
 
 /* SECTION 4 — PROCESS */
 .process {
-    padding: 80px 0;
-    background: #fafafa;
+    padding: 100px 0;
+    background: #f7f7f7;
 }
 
 .process-steps {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 40px;
+    gap: 50px;
     margin-top: 60px;
 }
 
@@ -183,6 +273,13 @@ a {
     margin: 0 auto 20px;
     font-size: 1.5rem;
     font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.step:hover .step-number {
+    background: #000;
+    color: #fff;
+    transform: scale(1.1);
 }
 
 .step-title {
@@ -196,6 +293,96 @@ a {
     color: #666;
     line-height: 1.6;
     font-weight: 400;
+}
+
+/* SECTION 5 — CONTACT FORM */
+.contact-form {
+    text-align: center;
+    padding: 100px 0;
+}
+
+.form-headline {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    margin-bottom: 30px;
+    font-weight: 800;
+}
+
+.form-subtext {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 50px;
+    font-style: italic;
+}
+
+.contact-form-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #e0e0e0;
+    font-size: 1rem;
+    font-family: inherit;
+    background: #fff;
+    transition: all 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #000;
+    box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.contact-form-wrapper .cta-primary {
+    margin-top: 20px;
+    width: 100%;
+    padding: 18px 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.contact-form-wrapper .cta-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.form-privacy {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 15px;
+    font-style: italic;
+    text-align: center;
 }
 
 /* SECTION 5 — FINAL CTA */
@@ -216,6 +403,7 @@ a {
     text-align: center;
     padding: 40px 0;
     border-top: 1px solid #eee;
+    background-color: #f7f7f7;
 }
 
 .footer p {
@@ -231,7 +419,11 @@ a {
     }
     
     .hero {
-        padding: 80px 0;
+        padding: 100px 0;
+    }
+    
+    .social-proof {
+        padding: 60px 0;
     }
     
     .authority {
@@ -246,8 +438,8 @@ a {
         padding: 60px 0;
     }
     
-    .final-cta {
-        padding: 80px 0;
+    .contact-form {
+        padding: 100px 0;
     }
     
     .cta-container {
@@ -259,6 +451,20 @@ a {
     .cta-secondary {
         width: 100%;
         max-width: 300px;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .contact-form-wrapper {
+        padding: 0 10px;
+    }
+    
+    .metrics-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
     }
     
     .process-steps {
@@ -287,6 +493,14 @@ a {
     
     .pillar {
         padding: 30px 15px;
+    }
+    
+    .metric-block {
+        padding: 25px 15px;
+    }
+    
+    .metric-value {
+        font-size: 2rem;
     }
     
     .cta-primary,
