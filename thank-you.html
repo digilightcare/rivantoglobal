@@ -36,38 +36,6 @@
   <!-- Favicon -->
   <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 
-  <!-- Google Analytics (Replace G-XXXXXXXXXX with real ID) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
-  </script>
-
-  <!-- Structured Data: Organization -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Rivanto",
-    "url": "https://rivantoglobal.com/",
-    "logo": "https://rivantoglobal.com/logo.png",
-    "description": "Strategic hospitality revenue partner helping independent and boutique hotels improve retained profitability."
-  }
-  </script>
-
-  <!-- Structured Data: WebPage -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Request Received",
-    "url": "https://rivantoglobal.com/thank-you.html",
-    "description": "Your revenue strategy call request has been received."
-  }
-  </script>
-
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -77,6 +45,28 @@
             <h1 class="thank-you-headline">Request Received.</h1>
             <p class="thank-you-text">Our team will review your details and reach out within 24 hours.</p>
             <a href="index.html" class="cta-primary">Return to Homepage</a>
+            
+            <!-- Contact Options -->
+            <div class="contact-options">
+                <h3>Need to Reach Us Sooner?</h3>
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <h4>📞 Call Us</h4>
+                        <p>For serious prospects ready to discuss revenue architecture</p>
+                        <a href="tel:+919548838588" class="contact-link" onclick="gtag('event','call_click');">+91-9548838588</a>
+                    </div>
+                    <div class="contact-item">
+                        <h4>📧 Email Us</h4>
+                        <p>For corporate inquiries and detailed proposals</p>
+                        <a href="mailto:rivantoglobal@gmail.com" class="contact-link" onclick="gtag('event','email_click');">rivantoglobal@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <h4>💬 WhatsApp</h4>
+                        <p>For quick connect and initial consultation</p>
+                        <a href="https://api.whatsapp.com/send?phone=919548838588" class="contact-link" onclick="gtag('event','whatsapp_click');">Chat on WhatsApp</a>
+                    </div>
+                </div>
+            </div>
         </section>
     </div>
 </body>
