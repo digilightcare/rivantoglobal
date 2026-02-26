@@ -287,6 +287,48 @@ section {
     line-height: 1.6;
 }
 
+/* CASE STUDY SECTION */
+#case-study {
+    text-align: center;
+    background: #fff;
+}
+
+.case-box {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 40px;
+    border: 1px solid #e5e5e5;
+    background: #fafafa;
+    text-align: left;
+}
+
+.case-box h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #000;
+}
+
+.case-box p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #333;
+}
+
+/* CATEGORY DIFFERENTIATION BLOCK */
+#category {
+    text-align: center;
+    background: #fafafa;
+}
+
+#category p {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #333;
+}
+
 /* TESTIMONIALS SECTION */
 #testimonials {
     background: #fff;
