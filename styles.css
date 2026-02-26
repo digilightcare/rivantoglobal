@@ -813,10 +813,24 @@ section {
     border-radius: 5px;
     font-weight: 500;
     transition: background 0.3s ease;
+    pointer-events: auto !important;
+    cursor: pointer !important;
 }
 
 .contact-link:hover {
     background: #333;
+}
+
+/* Ensure email links in footer are clickable */
+.footer-email a {
+    color: #fff;
+    text-decoration: underline;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+}
+
+.footer-email a:hover {
+    color: #ccc;
 }
 
 /* Authority List */
