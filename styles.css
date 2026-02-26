@@ -277,6 +277,84 @@ a {
     line-height: 1.6;
 }
 
+/* SECTION 6 — INSIGHTS */
+.insights {
+    text-align: center;
+    padding: 100px 0;
+}
+
+.section-subheading {
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    color: #666;
+    margin-bottom: 60px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 400;
+}
+
+.insights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.insight-card {
+    text-align: left;
+    padding: 40px;
+    background: #fff;
+    border: 1px solid #f0f0f0;
+    transition: all 0.3s ease;
+}
+
+.insight-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+.insight-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 20px;
+    line-height: 1.3;
+}
+
+.insight-content {
+    font-size: 0.95rem;
+    color: #333;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+.insight-content:last-child {
+    margin-bottom: 0;
+}
+
+.insight-list {
+    list-style: none;
+    margin: 15px 0;
+    padding-left: 20px;
+}
+
+.insight-list li {
+    font-size: 0.95rem;
+    color: #333;
+    line-height: 1.7;
+    margin-bottom: 8px;
+    position: relative;
+}
+
+.insight-list li::before {
+    content: '•';
+    position: absolute;
+    left: -20px;
+    color: #000;
+    font-weight: 700;
+}
+
 /* FINAL CTA SECTION */
 .final-cta {
     text-align: center;
@@ -504,6 +582,7 @@ input:focus, select:focus, textarea:focus {
     .framework,
     .revenue-sprint,
     .engagement-model,
+    .insights,
     .final-cta,
     .landing-hero {
         padding: 70px 0;
@@ -527,6 +606,11 @@ input:focus, select:focus, textarea:focus {
     .framework-grid {
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 20px;
+    }
+    
+    .insights-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
     }
     
     .engagement-grid {
@@ -576,6 +660,7 @@ input:focus, select:focus, textarea:focus {
     .framework,
     .revenue-sprint,
     .engagement-model,
+    .insights,
     .final-cta,
     .landing-hero {
         padding: 50px 0;
@@ -583,6 +668,10 @@ input:focus, select:focus, textarea:focus {
     
     .framework-item {
         padding: 30px 15px;
+    }
+    
+    .insight-card {
+        padding: 30px 20px;
     }
     
     .engagement-item {
