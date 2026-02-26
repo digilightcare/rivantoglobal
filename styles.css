@@ -654,6 +654,13 @@ section {
     font-size: 1.1rem;
 }
 
+.capacity-note {
+    font-size: 0.9rem;
+    color: #999;
+    margin-top: 20px;
+    font-style: italic;
+}
+
 /* FOOTER */
 .footer {
     background: #111;
