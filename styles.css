@@ -436,6 +436,29 @@ a {
     font-weight: 700;
 }
 
+/* SECTION 7 — ABOUT THE ADVISORY */
+.about {
+    text-align: center;
+    padding: 100px 0;
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.about-text {
+    font-size: 1.1rem;
+    color: #333;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+
+.about-text:last-child {
+    margin-bottom: 0;
+}
+
 /* FINAL CTA SECTION */
 .final-cta {
     text-align: center;
@@ -503,6 +526,25 @@ a {
 }
 
 .footer-email {
+    font-size: 0.95rem;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.footer-email a,
+.footer-phone a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-email a:hover,
+.footer-phone a:hover {
+    color: #000;
+}
+
+.footer-phone {
     font-size: 0.95rem;
     color: #333;
     margin-bottom: 15px;
@@ -732,6 +774,7 @@ input:focus, select:focus, textarea:focus {
     .revenue-sprint,
     .engagement-model,
     .insights,
+    .about,
     .final-cta,
     .landing-hero {
         padding: 70px 0;
@@ -810,6 +853,7 @@ input:focus, select:focus, textarea:focus {
     .revenue-sprint,
     .engagement-model,
     .insights,
+    .about,
     .final-cta,
     .landing-hero {
         padding: 50px 0;
