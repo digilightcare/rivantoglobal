@@ -71,12 +71,12 @@
 
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body id="top">
     <!-- STICKY HEADER -->
     <header class="header">
         <div class="container">
             <div class="header-content">
-                <div class="logo">RIVANTO</div>
+                <a href="#top" class="logo">RIVANTO</a>
                 <nav class="nav">
                     <ul class="nav-list">
                         <li><a href="#framework" class="nav-link">Framework</a></li>
@@ -196,7 +196,7 @@
         </section>
 
         <!-- SECTION 6 — INSIGHTS -->
-        <section class="insights">
+        <section class="insights" id="insights">
             <h2 class="section-headline">Insights</h2>
             <p class="section-subheading">Analytical notes on hospitality revenue optimization.</p>
             <div class="insights-grid">
@@ -308,8 +308,31 @@
                 }
             });
         });
+        
+        // Back to Top Button
+        const backToTopBtn = document.getElementById("backToTop");
+
+        window.onscroll = function () {
+            if (document.documentElement.scrollTop > 300) {
+                backToTopBtn.style.display = "block";
+            } else {
+                backToTopBtn.style.display = "none";
+            }
+        };
+
+        backToTopBtn.onclick = function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
     </script>
     
     <!-- Future vertical expansion: SaaS / EdTech / Subscription Revenue Advisory -->
+    
+    <!-- Back to Top Button -->
+    <button id="backToTop">↑</button>
+    
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/919548838588" target="_blank" class="whatsapp-float">
+        WhatsApp
+    </a>
 </body>
 </html>
