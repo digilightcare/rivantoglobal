@@ -76,7 +76,7 @@
     <header class="header">
         <div class="container">
             <div class="header-content">
-                <a href="#top" class="logo">RIVANTO</a>
+                <a href="#hero" class="logo">RIVANTO</a>
                 <nav class="nav">
                     <ul class="nav-list">
                         <li><a href="#framework" class="nav-link">Framework</a></li>
@@ -97,7 +97,7 @@
 
     <div class="container">
         <!-- HERO SECTION -->
-        <section class="hero">
+        <section class="hero" id="hero">
             <h1 class="headline">Strategic Revenue Partner for Independent & Boutique Hotels</h1>
             <p class="subtext">We help hospitality businesses increase retained profitability through structured pricing optimization, channel mix refinement, and direct booking systems.</p>
             <div class="cta-container">
@@ -267,7 +267,8 @@
             </form>
             
             <div class="form-success" style="display:none;">
-                Thank you. We will contact you within 24 hours.
+                <p></p>Thank you. We will contact you within 24 hours.</p>
+                <a href="#hero" class="btn-secondary">Back to Home</a>
             </div>
         </section>
 
@@ -404,13 +405,22 @@
                         form.reset();
                         form.style.display = "none";
                         successMessage.style.display = "block";
-                        successMessage.scrollIntoView({ behavior: "smooth", block: "center" });
+
+                        window.scrollTo({
+                            top: successMessage.offsetTop - 120,
+                            behavior: "smooth"
+                        });
                     })
                     .catch((error) => {
                         console.error("Form submission error:", error);
                         alert("Submission failed. Please try again.");
                     });
                 });
+            }
+            
+            // Safety fix for hash reload
+            if (window.location.hash) {
+                history.replaceState(null, null, ' ');
             }
         });
     </script>
