@@ -442,6 +442,33 @@ a {
     font-weight: 700;
 }
 
+/* SECTION 8 — STRATEGY CALL */
+.strategy-call {
+    text-align: center;
+    padding: 80px 0;
+    background: #fafafa;
+}
+
+.section-text {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-success {
+    text-align: center;
+    padding: 40px;
+    background: #fff;
+    border: 2px solid #000;
+    font-size: 1.1rem;
+    color: #333;
+    max-width: 500px;
+    margin: 40px auto;
+}
+
 /* SECTION 7 — ABOUT THE ADVISORY */
 .about {
     text-align: center;
@@ -834,6 +861,7 @@ input:focus, select:focus, textarea:focus {
     .revenue-sprint,
     .engagement-model,
     .insights,
+    .strategy-call,
     .about,
     .final-cta,
     .landing-hero {
@@ -913,6 +941,7 @@ input:focus, select:focus, textarea:focus {
     .revenue-sprint,
     .engagement-model,
     .insights,
+    .strategy-call,
     .about,
     .final-cta,
     .landing-hero {

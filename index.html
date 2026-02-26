@@ -84,7 +84,7 @@
                         <li><a href="#engagement" class="nav-link">Engagement</a></li>
                         <li><a href="#contact" class="nav-link">Contact</a></li>
                     </ul>
-                    <a href="strategy-call.html" class="cta-primary header-cta">Request Revenue Review</a>
+                    <a href="#strategy-call" class="cta-primary header-cta">Request Revenue Review</a>
                 </nav>
                 <button class="mobile-menu-toggle" aria-label="Toggle menu">
                     <span></span>
@@ -101,7 +101,7 @@
             <h1 class="headline">Strategic Revenue Partner for Independent & Boutique Hotels</h1>
             <p class="subtext">We help hospitality businesses increase retained profitability through structured pricing optimization, channel mix refinement, and direct booking systems.</p>
             <div class="cta-container">
-                <a href="#engagement" class="cta-primary">Request Revenue Review</a>
+                <a href="#strategy-call" class="cta-primary">Request Revenue Review</a>
                 <a href="#framework" class="cta-secondary">View Framework</a>
             </div>
         </section>
@@ -234,6 +234,43 @@
             </div>
         </section>
 
+        <!-- SECTION 8 — STRATEGY CALL -->
+        <section class="strategy-call" id="strategy-call">
+            <h2 class="section-headline">Request Your Free Revenue Review</h2>
+            <p class="section-text">We work with boutique hotels and premium stays committed to structured growth.</p>
+            
+            <form name="strategy-call" method="POST" data-netlify="true" class="strategy-form">
+                <input type="hidden" name="form-name" value="strategy-call" />
+                
+                <div class="form-grid">
+                    <input type="text" name="full-name" placeholder="Full Name" required />
+                    <input type="text" name="hotel-name" placeholder="Hotel Name" required />
+
+                    <select name="rooms" required>
+                        <option value="">Number of Rooms</option>
+                        <option>1–10</option>
+                        <option>10–20</option>
+                        <option>20–50</option>
+                        <option>50+</option>
+                    </select>
+
+                    <input type="number" name="occupancy" placeholder="Current Occupancy %" required />
+
+                    <input type="email" name="email" placeholder="Work Email" required />
+
+                    <input type="tel" name="phone" placeholder="+91 9876543210" pattern="^\+?[0-9\s\-]{7,15}$" required />
+
+                    <textarea name="message" placeholder="Message (Optional)"></textarea>
+                </div>
+
+                <button type="submit" class="primary-btn form-submit">Request Strategy Call</button>
+            </form>
+            
+            <div class="form-success" style="display:none;">
+                Thank you. We will contact you within 24 hours.
+            </div>
+        </section>
+
         <!-- SECTION 7 — ABOUT THE ADVISORY -->
         <section class="about">
             <h2 class="section-headline">About the Advisory</h2>
@@ -247,7 +284,7 @@
         <section class="final-cta" id="contact">
             <h2 class="cta-headline">Increase Retained Profitability.</h2>
             <p class="cta-subtext">Request a structured revenue review to identify measurable margin improvement opportunities.</p>
-            <a href="strategy-call.html" class="cta-primary cta-large">Request Revenue Review</a>
+            <a href="#strategy-call" class="cta-primary cta-large">Request Revenue Review</a>
         </section>
 
         <!-- FOOTER -->
@@ -295,15 +332,21 @@
             }
         });
         
-        // Smooth scrolling for anchor links
+        // Smooth scrolling for anchor links with header offset
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener("click", function(e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                const target = document.querySelector(this.getAttribute("href"));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                    const offset = 80;
+                    const bodyRect = document.body.getBoundingClientRect().top;
+                    const elementRect = target.getBoundingClientRect().top;
+                    const elementPosition = elementRect - bodyRect;
+                    const offsetPosition = elementPosition - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
                     });
                 }
             });
@@ -323,6 +366,35 @@
         backToTopBtn.onclick = function () {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         };
+        
+        // Handle Netlify form submission
+        const form = document.querySelector('form[name="strategy-call"]');
+        const successMessage = document.querySelector('.form-success');
+        
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Submit form using Netlify
+                fetch('/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams(new FormData(form)).toString()
+                })
+                .then(() => {
+                    // Hide form and show success message
+                    form.style.display = 'none';
+                    successMessage.style.display = 'block';
+                    
+                    // Scroll to success message
+                    successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                })
+                .catch((error) => {
+                    console.error('Form submission error:', error);
+                    alert('There was an error submitting the form. Please try again.');
+                });
+            });
+        }
     </script>
     
     <!-- Future vertical expansion: SaaS / EdTech / Subscription Revenue Advisory -->
