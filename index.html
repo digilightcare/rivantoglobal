@@ -301,100 +301,118 @@
         </footer>
     </div>
 
+    <!-- Hidden form for Netlify detection -->
+    <form name="strategy-call" data-netlify="true" hidden>
+        <input type="text" name="full-name" />
+        <input type="text" name="hotel-name" />
+        <input type="text" name="rooms" />
+        <input type="text" name="occupancy" />
+        <input type="email" name="email" />
+        <input type="tel" name="phone" />
+        <textarea name="message"></textarea>
+    </form>
+
     <!-- JavaScript for mobile menu and sticky header -->
     <script>
-        // Mobile menu toggle
-        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-        const nav = document.querySelector('.nav');
-        
-        mobileMenuToggle.addEventListener('click', () => {
-            mobileMenuToggle.classList.toggle('active');
-            nav.classList.toggle('active');
-        });
-        
-        // Close mobile menu when clicking on a link
-        const navLinks = document.querySelectorAll('.nav-link');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenuToggle.classList.remove('active');
-                nav.classList.remove('active');
-            });
-        });
-        
-        // Sticky header scroll effect
-        const header = document.querySelector('.header');
-        
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-        
-        // Smooth scrolling for anchor links with header offset
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener("click", function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute("href"));
-                if (target) {
-                    const offset = 80;
-                    const bodyRect = document.body.getBoundingClientRect().top;
-                    const elementRect = target.getBoundingClientRect().top;
-                    const elementPosition = elementRect - bodyRect;
-                    const offsetPosition = elementPosition - offset;
-
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: "smooth"
-                    });
-                }
-            });
-        });
-        
-        // Back to Top Button
-        const backToTopBtn = document.getElementById("backToTop");
-
-        window.onscroll = function () {
-            if (document.documentElement.scrollTop > 300) {
-                backToTopBtn.style.display = "block";
-            } else {
-                backToTopBtn.style.display = "none";
-            }
-        };
-
-        backToTopBtn.onclick = function () {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        };
-        
-        // Handle Netlify form submission
-        const form = document.querySelector('form[name="strategy-call"]');
-        const successMessage = document.querySelector('.form-success');
-        
-        if (form) {
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
+        document.addEventListener("DOMContentLoaded", function () {
+            // Mobile menu toggle
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const nav = document.querySelector('.nav');
+            
+            if (mobileMenuToggle && nav) {
+                mobileMenuToggle.addEventListener('click', () => {
+                    mobileMenuToggle.classList.toggle('active');
+                    nav.classList.toggle('active');
+                });
                 
-                // Submit form using Netlify
-                fetch('/', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: new URLSearchParams(new FormData(form)).toString()
-                })
-                .then(() => {
-                    // Hide form and show success message
-                    form.style.display = 'none';
-                    successMessage.style.display = 'block';
-                    
-                    // Scroll to success message
-                    successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                })
-                .catch((error) => {
-                    console.error('Form submission error:', error);
-                    alert('There was an error submitting the form. Please try again.');
+                // Close mobile menu when clicking on a link
+                const navLinks = document.querySelectorAll('.nav-link');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenuToggle.classList.remove('active');
+                        nav.classList.remove('active');
+                    });
+                });
+            }
+            
+            // Sticky header scroll effect
+            const header = document.querySelector('.header');
+            
+            if (header) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 50) {
+                        header.classList.add('scrolled');
+                    } else {
+                        header.classList.remove('scrolled');
+                    }
+                });
+            }
+            
+            // Smooth scrolling for anchor links with header offset
+            document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach(anchor => {
+                anchor.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute("href"));
+                    if (target) {
+                        const offset = 80;
+                        const bodyRect = document.body.getBoundingClientRect().top;
+                        const elementRect = target.getBoundingClientRect().top;
+                        const elementPosition = elementRect - bodyRect;
+                        const offsetPosition = elementPosition - offset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                        });
+                    }
                 });
             });
-        }
+            
+            // Back to Top Button
+            const backToTopBtn = document.getElementById("backToTop");
+
+            if (backToTopBtn) {
+                window.addEventListener("scroll", function () {
+                    if (window.scrollY > 300) {
+                        backToTopBtn.style.display = "block";
+                    } else {
+                        backToTopBtn.style.display = "none";
+                    }
+                });
+
+                backToTopBtn.addEventListener("click", function () {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+            
+            // Handle Netlify form submission
+            const form = document.querySelector('form[name="strategy-call"]:not([hidden])');
+            const successMessage = document.querySelector('.form-success');
+
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    const formData = new FormData(form);
+
+                    fetch("/", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                        body: new URLSearchParams(formData).toString()
+                    })
+                    .then(() => {
+                        form.reset();
+                        form.style.display = "none";
+                        successMessage.style.display = "block";
+                        successMessage.scrollIntoView({ behavior: "smooth", block: "center" });
+                    })
+                    .catch((error) => {
+                        console.error("Form submission error:", error);
+                        alert("Submission failed. Please try again.");
+                    });
+                });
+            }
+        });
     </script>
     
     <!-- Future vertical expansion: SaaS / EdTech / Subscription Revenue Advisory -->
