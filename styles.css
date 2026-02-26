@@ -29,15 +29,7 @@ h1, h2, h3 {
     font-size: clamp(2rem, 4vw, 2.5rem);
     margin-bottom: 60px;
     font-weight: 800;
-}
-
-.section-text {
-    font-size: clamp(1.1rem, 2vw, 1.3rem);
-    line-height: 1.6;
-    color: #333;
-    max-width: 800px;
-    margin: 0 auto;
-    font-weight: 400;
+    text-align: center;
 }
 
 /* Links */
@@ -54,10 +46,10 @@ a {
     margin: 80px 0;
 }
 
-/* SECTION 1 — HERO */
+/* HERO SECTION */
 .hero {
     text-align: center;
-    padding: 160px 0;
+    padding: 100px 0;
 }
 
 .headline {
@@ -116,6 +108,238 @@ a {
     background: #000;
     color: #fff;
     transform: translateY(-2px);
+}
+
+/* SECTION 1 — WHERE HOTELS LOSE MARGIN */
+.margin-loss {
+    text-align: center;
+    padding: 100px 0;
+}
+
+.margin-list {
+    list-style: none;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.margin-list li {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    padding-left: 30px;
+    position: relative;
+    font-weight: 500;
+    color: #333;
+}
+
+.margin-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: 700;
+    color: #000;
+}
+
+/* SECTION 2 — FINANCIAL IMPACT EXAMPLE */
+.financial-impact {
+    text-align: center;
+    padding: 100px 0;
+    background: #fafafa;
+}
+
+.financial-example {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.financial-example p {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 20px;
+    line-height: 1.7;
+}
+
+.financial-example p:last-child {
+    margin-bottom: 0;
+}
+
+/* SECTION 3 — REVENUE OPTIMIZATION FRAMEWORK */
+.framework {
+    text-align: center;
+    padding: 100px 0;
+}
+
+.framework-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.framework-item {
+    text-align: center;
+    padding: 40px 20px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    transition: all 0.3s ease;
+}
+
+.framework-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+
+.framework-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #000;
+}
+
+/* SECTION 4 — 30-DAY REVENUE SPRINT */
+.revenue-sprint {
+    text-align: center;
+    padding: 100px 0;
+}
+
+.sprint-steps {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.sprint-step {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+    text-align: left;
+}
+
+.sprint-step:last-child {
+    margin-bottom: 0;
+}
+
+.step-number {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #000;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-right: 30px;
+    flex-shrink: 0;
+}
+
+.step-content {
+    flex: 1;
+}
+
+.step-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #000;
+}
+
+/* SECTION 5 — ENGAGEMENT MODEL */
+.engagement-model {
+    text-align: center;
+    padding: 100px 0;
+}
+
+.engagement-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.engagement-item {
+    text-align: center;
+    padding: 40px 30px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+}
+
+.engagement-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 15px;
+}
+
+.engagement-desc {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* FINAL CTA SECTION */
+.final-cta {
+    text-align: center;
+    padding: 100px 0;
+    background: #000;
+    color: #fff;
+}
+
+.cta-headline {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    margin-bottom: 30px;
+    font-weight: 800;
+    color: #fff;
+}
+
+.cta-subtext {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: #ccc;
+    margin-bottom: 50px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 400;
+}
+
+.cta-large {
+    padding: 24px 48px;
+    font-size: 18px;
+    background: #fff;
+    color: #000;
+    border: 2px solid #fff;
+}
+
+.cta-large:hover {
+    background: #000;
+    color: #fff;
+}
+
+/* FOOTER */
+.footer {
+    text-align: center;
+    padding: 60px 0;
+    border-top: 1px solid #eee;
+}
+
+.footer-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+.footer-subtitle {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.footer-text {
+    font-size: 0.9rem;
+    color: #999;
+    font-weight: 400;
 }
 
 /* LANDING PAGE STYLES */
@@ -232,144 +456,7 @@ a {
     font-weight: 400;
 }
 
-/* SECTION 2 — THE PROBLEM */
-.problem {
-    text-align: center;
-    padding: 120px 0;
-}
-
-.problem-list {
-    list-style: none;
-    max-width: 700px;
-    margin: 0 auto;
-}
-
-.problem-list li {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-    padding-left: 30px;
-    position: relative;
-    font-weight: 500;
-    color: #333;
-}
-
-.problem-list li::before {
-    content: '—';
-    position: absolute;
-    left: 0;
-    top: 0;
-    font-weight: 700;
-    color: #000;
-}
-
-/* SECTION 3 — REVENUE FRAMEWORK */
-.framework {
-    text-align: center;
-    padding: 120px 0;
-    background: #fafafa;
-}
-
-.framework-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 60px;
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.framework-item {
-    text-align: center;
-    padding: 40px 20px;
-}
-
-.framework-title {
-    font-size: 1.4rem;
-    margin-bottom: 20px;
-    font-weight: 700;
-    color: #000;
-}
-
-.framework-desc {
-    font-size: 1rem;
-    color: #666;
-    line-height: 1.6;
-    font-weight: 400;
-}
-
-/* SECTION 4 — WHO WE WORK WITH */
-.who-we-work-with {
-    text-align: center;
-    padding: 120px 0;
-}
-
-.partners-list {
-    list-style: none;
-    max-width: 600px;
-    margin: 30px auto;
-}
-
-.partners-list li {
-    font-size: 1.2rem;
-    margin-bottom: 15px;
-    padding-left: 25px;
-    position: relative;
-    font-weight: 500;
-    color: #333;
-}
-
-.partners-list li::before {
-    content: '•';
-    position: absolute;
-    left: 0;
-    top: 0;
-    font-weight: 700;
-    color: #000;
-}
-
-.exclusion-text {
-    font-size: 1rem;
-    color: #666;
-    font-style: italic;
-    max-width: 600px;
-    margin: 40px auto 0;
-}
-
-/* SECTION 5 — FREE STRATEGY CALL */
-.strategy-call {
-    text-align: center;
-    padding: 120px 0;
-}
-
-.call-list {
-    list-style: none;
-    max-width: 500px;
-    margin: 30px auto;
-}
-
-.call-list li {
-    font-size: 1.1rem;
-    margin-bottom: 15px;
-    padding-left: 25px;
-    position: relative;
-    font-weight: 500;
-    color: #333;
-}
-
-.call-list li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    top: 0;
-    font-weight: 700;
-    color: #000;
-}
-
-.contact-form {
-    max-width: 500px;
-    margin: 60px auto 0;
-    text-align: left;
-}
-
+/* Form Styles */
 label {
     display: block;
     font-size: 0.9rem;
@@ -405,19 +492,6 @@ input:focus, select:focus, textarea:focus {
     text-align: center;
 }
 
-/* FOOTER */
-.footer {
-    text-align: center;
-    padding: 60px 0;
-    border-top: 1px solid #eee;
-}
-
-.footer p {
-    color: #666;
-    font-size: 0.9rem;
-    font-weight: 400;
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
     .container {
@@ -425,16 +499,14 @@ input:focus, select:focus, textarea:focus {
     }
     
     .hero,
-    .landing-hero {
-        padding: 120px 0;
-    }
-    
-    .problem,
+    .margin-loss,
+    .financial-impact,
     .framework,
-    .who-we-work-with,
-    .strategy-call,
-    .landing-form {
-        padding: 80px 0;
+    .revenue-sprint,
+    .engagement-model,
+    .final-cta,
+    .landing-hero {
+        padding: 70px 0;
     }
     
     .thank-you {
@@ -453,13 +525,16 @@ input:focus, select:focus, textarea:focus {
     }
     
     .framework-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
     }
     
-    .problem-list,
-    .partners-list,
-    .call-list,
+    .engagement-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .margin-list,
     .landing-bullets {
         max-width: 100%;
     }
@@ -475,6 +550,16 @@ input:focus, select:focus, textarea:focus {
         gap: 20px;
     }
     
+    .sprint-step {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .step-number {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+    
     .divider {
         margin: 60px 0;
     }
@@ -486,17 +571,25 @@ input:focus, select:focus, textarea:focus {
     }
     
     .hero,
+    .margin-loss,
+    .financial-impact,
+    .framework,
+    .revenue-sprint,
+    .engagement-model,
+    .final-cta,
     .landing-hero {
-        padding: 80px 0;
+        padding: 50px 0;
     }
     
     .framework-item {
         padding: 30px 15px;
     }
     
-    .problem-list li,
-    .partners-list li,
-    .call-list li,
+    .engagement-item {
+        padding: 30px 20px;
+    }
+    
+    .margin-list li,
     .landing-bullets li {
         font-size: 1.1rem;
     }
@@ -505,6 +598,12 @@ input:focus, select:focus, textarea:focus {
     .cta-secondary {
         padding: 18px 32px;
         font-size: 15px;
+    }
+    
+    .step-number {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
     }
 }
 
