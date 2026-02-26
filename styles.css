@@ -892,6 +892,28 @@ section {
     transform: scale(1.1);
 }
 
+/* Mobile Layout Fix for Floating Buttons */
+@media (max-width: 768px) {
+    .back-to-top {
+        bottom: 80px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+    }
+    
+    .whatsapp-float {
+        bottom: 20px;
+        right: 20px;
+        width: 55px;
+        height: 55px;
+    }
+    
+    /* Ensure footer has enough padding on mobile */
+    .footer {
+        padding-bottom: 100px !important;
+    }
+}
+
 /* FOOTER */
 .footer {
     background: #111;
