@@ -92,7 +92,7 @@
     <header class="header">
         <div class="container">
             <div class="header-content">
-                <a href="#hero" class="logo">RIVANTO</a>
+                <a href="#home" class="logo">RIVANTO</a>
                 <nav class="nav">
                     <ul class="nav-list">
                         <li><a href="#framework" class="nav-link">Framework</a></li>
@@ -113,12 +113,12 @@
 
     <div class="container">
         <!-- HERO SECTION -->
-        <section class="hero" id="hero">
+        <section class="hero" id="home">
             <h1 class="headline">Revenue Architecture for Independent Hospitality Assets</h1>
             <p class="hero-subtext">Structured systems to improve Net ADR, reduce OTA dependency, and increase predictable revenue performance across hotels, resorts and villas.</p>
             <div class="cta-container">
                 <a href="#strategy-call" class="cta-primary">Request Revenue Review</a>
-                <a href="#framework" class="cta-secondary">View Framework</a>
+                <a href="#framework" class="secondary-btn">View Framework</a>
             </div>
         </section>
 
@@ -269,6 +269,44 @@
             </ul>
         </section>
 
+        <!-- QUALIFICATION SECTION -->
+        <section class="strategy-call" id="qualification">
+            <h2>Request Your Strategic Revenue Review</h2>
+            <p class="section-text">We work with boutique hotels and premium stays committed to structured growth.</p>
+            
+            <form name="strategy-call" method="POST" data-netlify="true" class="strategy-form">
+                <input type="hidden" name="form-name" value="strategy-call" />
+                
+                <div class="form-grid">
+                    <input type="text" name="full-name" placeholder="Full Name" required />
+                    <input type="text" name="hotel-name" placeholder="Hotel Name" required />
+
+                    <select name="rooms" required>
+                        <option value="" disabled selected>Number of Rooms</option>
+                        <option value="8-15">8-15 Rooms</option>
+                        <option value="16-30">16-30 Rooms</option>
+                        <option value="31-50">31-50 Rooms</option>
+                        <option value="50+">50+ Rooms</option>
+                    </select>
+
+                    <input type="number" name="occupancy" placeholder="Current Occupancy %" required />
+
+                    <input type="email" name="email" placeholder="Work Email" required />
+
+                    <input type="tel" name="phone" placeholder="+91 9876543210" pattern="^\+?[0-9\s\-]{7,15}$" required />
+
+                    <textarea name="message" placeholder="Message (Optional)"></textarea>
+                </div>
+
+                <button type="submit" class="primary-btn form-submit">Request Strategy Call</button>
+            </form>
+            
+            <div class="form-success" style="display:none;">
+                <p>Thank you. We will contact you within 24 hours.</p>
+                <a href="#home" class="btn-secondary">Back to Home</a>
+            </div>
+        </section>
+
         <!-- THOUGHT LEADERSHIP SECTION -->
         <section class="insights" id="insights">
             <h2>Insights</h2>
@@ -301,44 +339,6 @@
                 Most revenue management advice focuses on tactical pricing.
                 Rivanto designs structural revenue frameworks — aligning demand forecasting, channel mix, and pricing discipline.
             </p>
-        </section>
-
-        <!-- SECTION 8 — STRATEGY CALL -->
-        <section class="strategy-call" id="strategy-call">
-            <h2>Request Your Strategic Revenue Review</h2>
-            <p class="section-text">We work with boutique hotels and premium stays committed to structured growth.</p>
-            
-            <form name="strategy-call" method="POST" data-netlify="true" class="strategy-form">
-                <input type="hidden" name="form-name" value="strategy-call" />
-                
-                <div class="form-grid">
-                    <input type="text" name="full-name" placeholder="Full Name" required />
-                    <input type="text" name="hotel-name" placeholder="Hotel Name" required />
-
-                    <select name="rooms" required>
-                        <option value="">Number of Rooms</option>
-                        <option>1–10</option>
-                        <option>10–20</option>
-                        <option>20–50</option>
-                        <option>50+</option>
-                    </select>
-
-                    <input type="number" name="occupancy" placeholder="Current Occupancy %" required />
-
-                    <input type="email" name="email" placeholder="Work Email" required />
-
-                    <input type="tel" name="phone" placeholder="+91 9876543210" pattern="^\+?[0-9\s\-]{7,15}$" required />
-
-                    <textarea name="message" placeholder="Message (Optional)"></textarea>
-                </div>
-
-                <button type="submit" class="primary-btn form-submit">Request Strategy Call</button>
-            </form>
-            
-            <div class="form-success" style="display:none;">
-                <p>Thank you. We will contact you within 24 hours.</p>
-                <a href="#hero" class="btn-secondary">Back to Home</a>
-            </div>
         </section>
 
         <!-- FIRM-LED AUTHORITY BLOCK -->
@@ -377,6 +377,13 @@
             </div>
         </footer>
     </div>
+
+    <!-- BACK TO TOP BUTTON -->
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m18 15-6-6-6 6"/>
+        </svg>
+    </button>
 
     <!-- Hidden form for Netlify detection -->
     <form name="strategy-call" data-netlify="true" hidden>
@@ -444,38 +451,39 @@
                     }
                 });
             });
-            
-            // Back to Top Button
-            const backToTopBtn = document.getElementById("backToTop");
+        });
 
-            if (backToTopBtn) {
-                window.addEventListener("scroll", function () {
-                    if (window.scrollY > 300) {
-                        backToTopBtn.style.display = "block";
-                    } else {
-                        backToTopBtn.style.display = "none";
-                    }
-                });
-
-                backToTopBtn.addEventListener("click", function () {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                });
+        // Back to top button functionality
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
             }
-            
-            // Handle Netlify form submission
-            const form = document.querySelector('form[name="strategy-call"]:not([hidden])');
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Form submission handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form[data-netlify="true"]:not([hidden])');
             const successMessage = document.querySelector('.form-success');
 
             if (form) {
                 form.addEventListener('submit', function(e) {
                     e.preventDefault();
-
-                    const formData = new FormData(form);
-
-                    fetch("/", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                        body: new URLSearchParams(formData).toString()
+                    
+                    fetch(form.action, {
+                        method: 'POST',
+                        body: new FormData(form),
+                        headers: { 'Accept': 'application/json' }
                     })
                     .then(() => {
                         form.reset();
@@ -487,20 +495,15 @@
                             behavior: "smooth"
                         });
                     })
-                    .catch((error) => {
-                        console.error("Form submission error:", error);
-                        alert("Submission failed. Please try again.");
+                    .catch(error => {
+                        console.error('Form submission error:', error);
+                        alert('There was an error submitting the form. Please try again.');
                     });
                 });
             }
-            
-            // Safety fix for hash reload
-            if (window.location.hash) {
-                history.replaceState(null, null, ' ');
-            }
-            
+
             // Micro-animations for executive feel
-            const fadeElements = document.querySelectorAll(".framework-card, section h2");
+            const fadeElements = document.querySelectorAll(".framework-item, section h2");
 
             const observer = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
@@ -517,13 +520,13 @@
                 el.style.transition = "all 0.6s ease";
                 observer.observe(el);
             });
+
+            // Safety fix for hash reload
+            if (window.location.hash) {
+                history.replaceState(null, null, ' ');
+            }
         });
     </script>
-    
-    <!-- Future vertical expansion: SaaS / EdTech / Subscription Revenue Advisory -->
-    
-    <!-- Back to Top Button -->
-    <button id="backToTop">↑</button>
     
     <!-- WhatsApp Floating Button -->
     <a href="https://wa.me/919548838588" target="_blank" class="whatsapp-float">

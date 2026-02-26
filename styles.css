@@ -131,17 +131,41 @@ h3 {
     color: #fff;
 }
 
+/* Secondary Button - White Filled */
+.secondary-btn {
+    background: #fff;
+    color: #000;
+    padding: 16px 32px;
+    font-weight: 600;
+    border: 2px solid #fff;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.secondary-btn:hover {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+}
+
+.btn-secondary:hover {
+    background: #000;
+    color: #fff;
+}
+
 /* Dark Background CTA Override */
 .final-cta .cta-large:hover {
     background: #fff;
     color: #000;
 }
 
-/* Logo - Increased Weight and Size */
+/* Logo - Authority Update */
 .logo {
-    font-size: 1.8rem;
-    font-weight: 800;
-    letter-spacing: -0.02em;
+    font-size: 26px;
+    letter-spacing: 2px;
+    font-weight: 600;
     color: #000;
     text-decoration: none;
     transition: all 0.3s ease;
@@ -193,7 +217,7 @@ h3 {
     flex-wrap: wrap;
 }
 
-/* Section Headings - Left Aligned for Authority */
+/* Section Headings - Authority Alignment System */
 section h2 {
     font-size: clamp(1.8rem, 4vw, 2.5rem);
     margin-bottom: 40px;
@@ -205,24 +229,52 @@ section h2 {
     margin-right: auto;
 }
 
-/* Special Cases */
-#hero h1 {
+/* Hero and CTA Blocks - Center Aligned */
+#home h1 {
     text-align: center;
 }
 
-#testimonials h2,
-#case-study h2,
-#credibility h2,
-#category h2,
-#strategy-call h2,
-#firm-authority h2,
 .final-cta h2 {
     text-align: center;
 }
 
-/* Section Spacing */
+/* Authority Sections - Left Aligned */
+#framework h2,
+#insights h2,
+#engagement h2,
+#qualification h2,
+#ideal-client h2,
+#not-for h2,
+#firm-authority h2,
+#category h2 {
+    text-align: left;
+}
+
+/* Special Center Cases */
+#testimonials h2,
+#case-study h2,
+#credibility h2,
+#strategy-call h2 {
+    text-align: center;
+}
+
+/* Global Page Wrapper Consistency */
 section {
-    padding: 100px 20px;
+    padding: 80px 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Hero Section Exception */
+#home {
+    max-width: none;
+    padding: 140px 20px 120px;
+}
+
+/* Footer Exception */
+.footer {
+    max-width: none;
+    padding: 60px 0;
 }
 
 /* Divider */
@@ -722,6 +774,37 @@ section {
 
 .authority-list li:last-child {
     border-bottom: none;
+}
+
+/* Back to Top Button */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: #000;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    background: #333;
+    transform: translateY(-2px);
 }
 
 /* FOOTER */
