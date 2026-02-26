@@ -661,6 +661,26 @@ section {
     font-style: italic;
 }
 
+/* Authority List */
+.authority-list {
+    list-style: none;
+    max-width: 600px;
+    margin: 40px auto;
+    text-align: left;
+}
+
+.authority-list li {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    line-height: 1.6;
+}
+
+.authority-list li:last-child {
+    border-bottom: none;
+}
+
 /* FOOTER */
 .footer {
     background: #111;
