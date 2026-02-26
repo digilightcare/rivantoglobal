@@ -1,4 +1,15 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /private/
 
+# Allow search engines to crawl all important content
+Allow: /css/
+Allow: /js/
+Allow: /images/
+
+# Sitemap location
 Sitemap: https://rivantoglobal.com/sitemap.xml
+
+# Crawl delay (optional, be nice to servers)
+Crawl-delay: 1
