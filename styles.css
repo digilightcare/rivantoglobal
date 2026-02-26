@@ -563,6 +563,23 @@ a {
     font-weight: 400;
 }
 
+/* Breadcrumb */
+.breadcrumb {
+    padding: 20px 0;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.breadcrumb a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.breadcrumb a:hover {
+    color: #000;
+}
+
 /* LANDING PAGE STYLES */
 .landing-hero {
     text-align: center;
@@ -948,7 +965,7 @@ button:focus {
 #backToTop {
     position: fixed;
     bottom: 30px;
-    right: 30px;
+    left: 30px;
     background: #000;
     color: #fff;
     border: none;
@@ -969,17 +986,29 @@ button:focus {
 .whatsapp-float {
     position: fixed;
     bottom: 30px;
-    left: 30px;
+    right: 30px;
     background: #25D366;
     color: #fff;
-    padding: 10px 14px;
-    font-size: 13px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-decoration: none;
     z-index: 999;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
 }
 
 .whatsapp-float:hover {
     background: #128C7E;
     transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+}
+
+.whatsapp-float svg {
+    width: 28px;
+    height: 28px;
+    fill: #fff;
 }
