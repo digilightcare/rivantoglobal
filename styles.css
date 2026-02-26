@@ -131,6 +131,22 @@ h3 {
     color: #fff;
 }
 
+/* Dark Background CTA Override */
+.final-cta .cta-large:hover {
+    background: #fff;
+    color: #000;
+}
+
+/* Logo - Increased Weight and Size */
+.logo {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #000;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
 /* Mobile Menu Toggle */
 .mobile-menu-toggle {
     display: none;
@@ -175,6 +191,33 @@ h3 {
     gap: 20px;
     justify-content: center;
     flex-wrap: wrap;
+}
+
+/* Section Headings - Left Aligned for Authority */
+section h2 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    margin-bottom: 40px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-align: left;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Special Cases */
+#hero h1 {
+    text-align: center;
+}
+
+#testimonials h2,
+#case-study h2,
+#credibility h2,
+#category h2,
+#strategy-call h2,
+#firm-authority h2,
+.final-cta h2 {
+    text-align: center;
 }
 
 /* Section Spacing */

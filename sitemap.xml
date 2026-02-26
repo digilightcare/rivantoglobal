@@ -6,4 +6,34 @@
     <priority>1.0</priority>
   </url>
 
+  <url>
+    <loc>https://rivantoglobal.com/#framework</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://rivantoglobal.com/#insights</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://rivantoglobal.com/#engagement</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://rivantoglobal.com/#contact</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://rivantoglobal.com/#strategy-call</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://rivantoglobal.com/thank-you</loc>
+    <priority>0.6</priority>
+  </url>
+
 </urlset>
