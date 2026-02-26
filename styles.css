@@ -779,7 +779,7 @@ section {
 /* Back to Top Button */
 .back-to-top {
     position: fixed;
-    bottom: 30px;
+    bottom: 100px;
     right: 30px;
     width: 50px;
     height: 50px;
@@ -805,6 +805,28 @@ section {
 .back-to-top:hover {
     background: #333;
     transform: translateY(-2px);
+}
+
+/* WhatsApp Button - Ensure no overlap */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #25D366;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    z-index: 1001;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
 }
 
 /* FOOTER */
