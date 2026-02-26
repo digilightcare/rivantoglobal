@@ -100,7 +100,7 @@
                         <li><a href="#engagement" class="nav-link">Engagement</a></li>
                         <li><a href="#contact" class="nav-link">Contact</a></li>
                     </ul>
-                    <a href="#strategy-call" class="cta-primary header-cta" onclick="gtag('event','cta_click', {'cta_name':'Request Revenue Review'});">Request Revenue Review</a>
+                    <a href="#qualification" class="cta-primary header-cta" onclick="gtag('event','cta_click', {'cta_name':'Request Revenue Review'});">Request Revenue Review</a>
                 </nav>
                 <button class="mobile-menu-toggle" aria-label="Toggle menu">
                     <span></span>
@@ -117,7 +117,7 @@
             <h1 class="headline">Revenue Architecture for Independent Hospitality Assets</h1>
             <p class="hero-subtext">Structured systems to improve Net ADR, reduce OTA dependency, and increase predictable revenue performance across hotels, resorts and villas.</p>
             <div class="cta-container">
-                <a href="#strategy-call" class="cta-primary" onclick="gtag('event','cta_click', {'cta_name':'Request Revenue Review'});">Request Revenue Review</a>
+                <a href="#qualification" class="cta-primary" onclick="gtag('event','cta_click', {'cta_name':'Request Revenue Review'});">Request Revenue Review</a>
                 <a href="#framework" class="secondary-btn" onclick="gtag('event','cta_click', {'cta_name':'View Framework'});">View Framework</a>
             </div>
         </section>
@@ -358,7 +358,7 @@
         <section class="final-cta" id="contact">
             <h2>Increase Retained Profitability.</h2>
             <p class="cta-subtext">Request a structured revenue review to identify measurable margin improvement opportunities.</p>
-            <a href="#strategy-call" class="cta-primary cta-large" onclick="gtag('event','cta_click', {'cta_name':'Request Qualification Review'});">Request Qualification Review</a>
+            <a href="#qualification" class="cta-primary cta-large" onclick="gtag('event','cta_click', {'cta_name':'Request Qualification Review'});">Request Qualification Review</a>
             
             <!-- Contact Options -->
             <div class="contact-options">
@@ -458,9 +458,12 @@
             // Smooth scrolling for anchor links with header offset
             document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach(anchor => {
                 anchor.addEventListener("click", function(e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute("href"));
+                    const targetId = this.getAttribute("href");
+                    const target = document.querySelector(targetId);
+                    
+                    // Only prevent default if target exists on page
                     if (target) {
+                        e.preventDefault();
                         const offset = 80;
                         const bodyRect = document.body.getBoundingClientRect().top;
                         const elementRect = target.getBoundingClientRect().top;
@@ -472,6 +475,7 @@
                             behavior: "smooth"
                         });
                     }
+                    // If target doesn't exist, let default behavior happen (for mailto:, tel:, etc.)
                 });
             });
         });
