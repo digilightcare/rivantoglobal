@@ -1,16 +1,37 @@
 import { Resend } from 'resend';
 const admin = require("firebase-admin");
 
-const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
-
-if (!admin.apps.length) {
-  admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount)
-  });
+// Initialize Firebase with error handling
+let db;
+try {
+  if (process.env.FIREBASE_SERVICE_ACCOUNT) {
+    if (!admin.apps.length) {
+      const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
+      admin.initializeApp({
+        credential: admin.credential.cert(serviceAccount),
+      });
+    }
+    db = admin.firestore();
+    console.log('✅ Firebase initialized successfully');
+  } else {
+    console.log('⚠️ FIREBASE_SERVICE_ACCOUNT not found, skipping Firebase');
+  }
+} catch (error) {
+  console.error('❌ Firebase initialization failed:', error);
 }
 
-const db = admin.firestore();
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Initialize Resend with error handling
+let resend;
+try {
+  if (process.env.RESEND_API_KEY) {
+    resend = new Resend(process.env.RESEND_API_KEY);
+    console.log('✅ Resend initialized successfully');
+  } else {
+    console.log('⚠️ RESEND_API_KEY not found, skipping email sending');
+  }
+} catch (error) {
+  console.error('❌ Resend initialization failed:', error);
+}
 
 export async function handler(event) {
   // This function should be triggered by Netlify Scheduled Functions
