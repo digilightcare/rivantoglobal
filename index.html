@@ -513,64 +513,39 @@
             const phone = formData.get('phone');
             const message = formData.get('message') || 'No message provided';
 
-            // 1. Send Client Email Confirmation
-            sendClientEmailConfirmation(firstName, email);
+            // Send real email acknowledgements via Netlify Function
+            sendRealEmailAcknowledgements(fullName, email, companyName, phone, message);
 
-            // 2. Send Internal Team Alert
-            sendInternalTeamAlert(fullName, companyName, email, phone, message);
-
-            // 3. Send WhatsApp Acknowledgement (optional)
+            // Send WhatsApp acknowledgement (optional - console logged for now)
             sendWhatsAppAcknowledgement(firstName, phone);
         }
 
-        function sendClientEmailConfirmation(firstName, userEmail) {
-            const emailData = {
-                to: userEmail,
-                subject: 'Your Strategic Revenue Review Request is Received',
-                body: `Dear ${firstName},
+        async function sendRealEmailAcknowledgements(name, email, company, phone, message) {
+            try {
+                const response = await fetch('/.netlify/functions/sendLeadAcknowledgement', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        company: company,
+                        phone: phone,
+                        message: message
+                    })
+                });
 
-Thank you for requesting your Strategic Revenue Review.
-
-We've successfully received your submission.
-
-Our strategy team will now review your business details to understand your current positioning, growth direction, and potential revenue opportunities.
-
-If your request aligns with our review criteria, a member of our advisory team will connect with you shortly to discuss the next steps.
-
-This initial review helps us ensure that every conversation we initiate is meaningful, relevant, and outcome-focused.
-
-We appreciate your interest in exploring structured revenue growth.
-
-Warm regards,
-Team Rivanto
-Strategic Growth Advisory`
-            };
-
-            // Log for implementation (would integrate with email service)
-            console.log('Client Email Confirmation:', emailData);
-        }
-
-        function sendInternalTeamAlert(fullName, companyName, email, phone, message) {
-            const alertData = {
-                to: 'rivantoglobal@gmail.com',
-                subject: 'New Strategic Revenue Review Request Received',
-                body: `A new Strategic Revenue Review request has been submitted.
-
-Lead Details:
-
-Name: ${fullName}
-Company: ${companyName}
-Email: ${email}
-Phone: ${phone}
-Message: ${message}
-
-Please review and initiate qualification process if aligned.
-
-– Rivanto Website`
-            };
-
-            // Log for implementation (would integrate with email service)
-            console.log('Internal Team Alert:', alertData);
+                const result = await response.json();
+                
+                if (result.success) {
+                    console.log('✅ Email acknowledgements sent successfully');
+                } else {
+                    console.error('❌ Email sending failed:', result.error);
+                }
+            } catch (error) {
+                console.error('❌ Error calling email function:', error);
+            }
         }
 
         function sendWhatsAppAcknowledgement(firstName, phone) {

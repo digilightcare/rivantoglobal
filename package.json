@@ -1,0 +1,17 @@
+{
+  "name": "rivantoglobal",
+  "version": "1.0.0",
+  "description": "Rivanto Global - Revenue Architecture for Independent Hospitality Assets",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8080",
+    "build": "echo 'Build complete'"
+  },
+  "dependencies": {
+    "resend": "^3.0.0"
+  },
+  "devDependencies": {},
+  "keywords": ["hospitality", "revenue", "architecture", "consulting"],
+  "author": "Rivanto Global",
+  "license": "MIT"
+}
