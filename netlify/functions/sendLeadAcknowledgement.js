@@ -11,7 +11,7 @@ export async function handler(event) {
 
     // INTERNAL ALERT TO YOUR GMAIL
     await resend.emails.send({
-      from: 'Rivanto Website <onboarding@resend.dev>',
+      from: 'Rivanto Advisory <advisory@rivantoglobal.com>',
       to: 'rivantoglobal@gmail.com',
       subject: 'New Strategic Revenue Review Request Received',
       html: `
@@ -38,7 +38,7 @@ export async function handler(event) {
 
     // 📩 CUSTOMER ACKNOWLEDGEMENT EMAIL
     await resend.emails.send({
-      from: 'advisory@rivantoglobal.com',
+      from: 'Rivanto Advisory <advisory@rivantoglobal.com>',
       to: email,
       subject: 'Your Strategic Revenue Review Request is Received',
       html: `
