@@ -540,12 +540,26 @@
                 
                 if (result.success) {
                     console.log('✅ Email acknowledgements sent successfully');
+                    // Step 2: Open WhatsApp with pre-filled message after successful email sending
+                    openWhatsAppAcknowledgement(name);
                 } else {
                     console.error('❌ Email sending failed:', result.error);
                 }
             } catch (error) {
                 console.error('❌ Error calling email function:', error);
             }
+        }
+
+        function openWhatsAppAcknowledgement(name) {
+            // Step 3: Open WhatsApp in new tab with pre-filled message
+            const whatsappMessage = `Hello%20${encodeURIComponent(name)}%2C%0A%0AThank%20you%20for%20requesting%20your%20Strategic%20Revenue%20Review.%0A%0AOur%20advisory%20team%20has%20received%20your%20submission%20and%20will%20carefully%20evaluate%20it.%0A%0AIf%20your%20request%20aligns%20with%20our%20strategic%20review%20criteria%2C%20we%20will%20connect%20with%20you%20shortly.%0A%0A%E2%80%93%20Rivanto%20Strategic%20Advisory`;
+            
+            const whatsappUrl = `https://wa.me/919548838588?text=${whatsappMessage}`;
+            
+            // Open WhatsApp in new tab
+            window.open(whatsappUrl, '_blank');
+            
+            console.log('📱 WhatsApp acknowledgement opened in new tab');
         }
 
         function sendWhatsAppAcknowledgement(firstName, phone) {
