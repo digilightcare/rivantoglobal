@@ -38,27 +38,23 @@ export async function handler(event) {
 
     // 📩 CUSTOMER ACKNOWLEDGEMENT EMAIL
     await resend.emails.send({
-      from: 'Rivanto Global <onboarding@resend.dev>',
+      from: 'advisory@rivantoglobal.com',
       to: email,
       subject: 'Your Strategic Revenue Review Request is Received',
       html: `
         <div style="font-family: Arial, sans-serif; line-height: 1.6;">
-          <h2>Strategic Revenue Review Request Received</h2>
-          
-          <p>Dear ${name},</p>
+          <p>Hi ${name.split(' ')[0]},</p>
 
-          <p>Thank you for submitting your Strategic Revenue Review request.</p>
+          <p>Thank you for requesting your Strategic Revenue Review.</p>
 
-          <p>Our advisory team will carefully review your submission to understand alignment with our structured growth framework.</p>
+          <p>Our advisory team has received your submission and will review it carefully.</p>
 
-          <p>If your request aligns with our advisory scope, a member of our strategy team will connect with you.</p>
-
-          <p>This process ensures we provide meaningful and relevant engagement.</p>
+          <p>If your request aligns with our strategic review criteria, we will connect with you.</p>
 
           <br>
 
           <p>Warm regards,</p>
-          <strong>Rivanto Strategic Advisory</strong>
+          <p>Rivanto Strategic Advisory</p>
         </div>
       `
     });
