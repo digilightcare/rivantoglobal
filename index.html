@@ -605,38 +605,26 @@ Our strategy team is reviewing your submission and will connect with you shortly
                             body: JSON.stringify(formData)
                         });
 
-                        const result = await response.json();
-
                         if (response.ok) {
-                            // Show success message
+                            // GA4 event
+                            if (typeof gtag !== 'undefined') {
+                                gtag('event', 'lead_form_submit', {
+                                    event_category: 'engagement',
+                                    event_label: 'Revenue Strategy Form'
+                                });
+                            }
+
+                            // Open WhatsApp
+                            const whatsappMessage = `Hi Rivanto, I just requested a revenue strategy call.\n\nName: ${formData.name}\nHotel: ${formData.company}\nPhone: ${formData.phone}`;
+                            window.open(`https://wa.me/919548838588?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
+
+                            alert("Thank you! Our team will contact you shortly.");
+
                             form.reset();
-                            form.style.display = "none";
-                            successMessage.style.display = "block";
-                            
-                            // Track form submission
-                            gtag('event', 'lead_form_submit');
-
-                            // WhatsApp Trigger
-                            const whatsappMessage = encodeURIComponent(
-                                `Hello ${formData.name},
-
-Thank you for requesting your Strategic Revenue Review.
-
-Our advisory team has received your submission and will carefully evaluate it.
-
-If your request aligns with our strategic review criteria, we will connect with you shortly.
-
-– Rivanto Strategic Advisory`
-                            );
-
-                            window.open(`https://wa.me/919548838588?text=${whatsappMessage}`, "_blank");
-
-                            window.scrollTo({
-                                top: successMessage.offsetTop - 120,
-                                behavior: "smooth"
-                            });
 
                         } else {
+                            const text = await response.text();
+                            console.error("Function failed:", text);
                             alert("Submission failed. Please try again.");
                         }
 
