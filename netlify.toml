@@ -11,3 +11,8 @@
 
 [functions]
   directory = "netlify/functions"
+
+# Scheduled function for 24-hour follow-up
+[[scheduled_functions]]
+  path = "/scheduleFollowUp"
+  schedule = "0 2 * * *"  # Runs daily at 2 AM UTC

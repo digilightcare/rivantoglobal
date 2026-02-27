@@ -9,6 +9,9 @@ export async function handler(event) {
 
   try {
 
+    // Store lead for 24-hour follow-up tracking
+    await storeLeadForFollowUp({ name, email, company, phone, message });
+
     // INTERNAL ALERT TO YOUR GMAIL
     await resend.emails.send({
       from: 'Rivanto Website <noreply@rivantoglobal.com>',
@@ -71,4 +74,28 @@ export async function handler(event) {
       body: JSON.stringify({ error: error.message })
     };
   }
+}
+
+async function storeLeadForFollowUp(leadData) {
+  // Store lead data for 24-hour follow-up tracking
+  // In production, this would save to your preferred database
+  
+  const leadWithTimestamp = {
+    ...leadData,
+    submitted_at: new Date().toISOString(),
+    follow_up_sent: false,
+    manually_contacted: false
+  };
+  
+  // TODO: Implement database storage
+  // Examples:
+  // - MongoDB: db.leads.insertOne(leadWithTimestamp)
+  // - PostgreSQL: INSERT INTO leads VALUES (...)
+  // - Firebase: firebase.database().ref('leads').push(leadWithTimestamp)
+  
+  // For now, we'll log the data that would be stored
+  console.log('Lead stored for 24-hour follow-up tracking:', leadWithTimestamp);
+  
+  // In a real implementation, you would return the lead ID
+  return { id: 'temp-id', ...leadWithTimestamp };
 }
