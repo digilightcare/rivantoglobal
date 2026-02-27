@@ -2,6 +2,7 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /private/
+Disallow: /.netlify/
 
 # Allow search engines to crawl all important content
 Allow: /css/
@@ -13,3 +14,6 @@ Sitemap: https://rivantoglobal.com/sitemap.xml
 
 # Crawl delay (optional, be nice to servers)
 Crawl-delay: 1
+
+# Rivanto Global - Revenue Architecture for Independent Hospitality Assets
+# Last updated: 2026-02-27
