@@ -9,42 +9,6 @@ export async function handler(event) {
 
   try {
 
-    // CLIENT EMAIL
-    await resend.emails.send({
-      from: 'Rivanto Advisory <onboarding@resend.dev>',
-      to: email,
-      subject: 'Your Strategic Revenue Review Request is Received',
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #000; border-bottom: 2px solid #000; padding-bottom: 10px;">Dear ${name},</h2>
-          
-          <p style="font-size: 16px; line-height: 1.6; color: #333;">
-            Thank you for requesting your Strategic Revenue Review.
-          </p>
-          
-          <p style="font-size: 16px; line-height: 1.6; color: #333;">
-            We've successfully received your submission.
-          </p>
-          
-          <p style="font-size: 16px; line-height: 1.6; color: #333;">
-            Our strategy team will now review your business details to understand your positioning and potential growth opportunities.
-          </p>
-          
-          <p style="font-size: 16px; line-height: 1.6; color: #333;">
-            If your request aligns with our review criteria, a member of our advisory team will connect with you.
-          </p>
-          
-          <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd;">
-            <p style="font-size: 16px; line-height: 1.6; color: #333; margin: 0;">
-              Warm regards,<br>
-              <strong>Team Rivanto</strong><br>
-              <em>Strategic Growth Advisory</em>
-            </p>
-          </div>
-        </div>
-      `,
-    });
-
     // INTERNAL ALERT TO YOUR GMAIL
     await resend.emails.send({
       from: 'Rivanto Website <onboarding@resend.dev>',
@@ -70,6 +34,33 @@ export async function handler(event) {
           </div>
         </div>
       `,
+    });
+
+    // 📩 CUSTOMER ACKNOWLEDGEMENT EMAIL
+    await resend.emails.send({
+      from: 'Rivanto Global <onboarding@resend.dev>',
+      to: email,
+      subject: 'Your Strategic Revenue Review Request is Received',
+      html: `
+        <div style="font-family: Arial, sans-serif; line-height: 1.6;">
+          <h2>Strategic Revenue Review Request Received</h2>
+          
+          <p>Dear ${name},</p>
+
+          <p>Thank you for submitting your Strategic Revenue Review request.</p>
+
+          <p>Our advisory team will carefully review your submission to understand alignment with our structured growth framework.</p>
+
+          <p>If your request aligns with our advisory scope, a member of our strategy team will connect with you.</p>
+
+          <p>This process ensures we provide meaningful and relevant engagement.</p>
+
+          <br>
+
+          <p>Warm regards,</p>
+          <strong>Rivanto Strategic Advisory</strong>
+        </div>
+      `
     });
 
     return {
