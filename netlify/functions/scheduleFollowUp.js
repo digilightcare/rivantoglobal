@@ -1,5 +1,13 @@
 import { Resend } from 'resend';
+const admin = require("firebase-admin");
 
+if (!admin.apps.length) {
+  admin.initializeApp({
+    credential: admin.credential.cert(JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT))
+  });
+}
+
+const db = admin.firestore();
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function handler(event) {
@@ -7,16 +15,13 @@ export async function handler(event) {
   // It runs daily to check for leads that need 24-hour follow-up
   
   try {
-    // In a real implementation, you would query a database for leads
-    // that were submitted 24 hours ago and haven't been contacted
-    // For now, we'll use Netlify Forms as a simple storage mechanism
-    
-    // Get leads from Netlify Forms (simplified approach)
+    // Get leads from Firestore that need 24-hour follow-up
     const leads = await getLeadsNeedingFollowUp();
     
-    for (const lead of leads) {
+    for (const doc of leads) {
+      const lead = { id: doc.id, ...doc.data() };
       await sendFollowUpEmail(lead);
-      await markFollowUpSent(lead.id);
+      await markFollowUpSent(doc.id);
     }
     
     return {
@@ -37,19 +42,18 @@ export async function handler(event) {
 }
 
 async function getLeadsNeedingFollowUp() {
-  // This would typically query your database
-  // For now, return empty array - implement with your preferred database
-  // Examples: MongoDB, PostgreSQL, Firebase, etc.
-  
   console.log('Checking for leads needing 24-hour follow-up...');
   
-  // TODO: Implement database query
-  // SELECT * FROM leads 
-  // WHERE submitted_at <= NOW() - INTERVAL '24 hours' 
-  // AND follow_up_sent = false 
-  // AND manually_contacted = false
+  // Get leads submitted 24+ hours ago that haven't been contacted or followed up
+  const twentyFourHoursAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
   
-  return []; // Replace with actual database query
+  const snapshot = await db.collection("leads")
+    .where("createdAt", "<=", twentyFourHoursAgo)
+    .where("contactedManually", "==", false)
+    .where("followUpSent", "==", false)
+    .get();
+  
+  return snapshot.docs;
 }
 
 async function sendFollowUpEmail(lead) {
@@ -77,9 +81,10 @@ async function sendFollowUpEmail(lead) {
 }
 
 async function markFollowUpSent(leadId) {
-  // Mark in database that follow-up was sent
-  // TODO: Implement database update
-  // UPDATE leads SET follow_up_sent = true WHERE id = leadId
+  // Mark in Firestore that follow-up was sent
+  await db.collection("leads").doc(leadId).update({
+    followUpSent: true
+  });
   
   console.log(`Marked follow-up as sent for lead: ${leadId}`);
 }

@@ -1,5 +1,13 @@
 import { Resend } from 'resend';
+const admin = require("firebase-admin");
 
+if (!admin.apps.length) {
+  admin.initializeApp({
+    credential: admin.credential.cert(JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT))
+  });
+}
+
+const db = admin.firestore();
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function handler(event) {
@@ -8,9 +16,6 @@ export async function handler(event) {
   const { name, email, company, phone, message } = data;
 
   try {
-
-    // Store lead for 24-hour follow-up tracking
-    await storeLeadForFollowUp({ name, email, company, phone, message });
 
     // INTERNAL ALERT TO YOUR GMAIL
     await resend.emails.send({
@@ -62,6 +67,18 @@ export async function handler(event) {
       `
     });
 
+    // Store lead in Firestore after successful email sending
+    await db.collection("leads").add({
+      name,
+      email,
+      phone,
+      company,
+      message,
+      contactedManually: false,
+      followUpSent: false,
+      createdAt: admin.firestore.FieldValue.serverTimestamp()
+    });
+
     return {
       statusCode: 200,
       body: JSON.stringify({ success: true })
@@ -74,28 +91,4 @@ export async function handler(event) {
       body: JSON.stringify({ error: error.message })
     };
   }
-}
-
-async function storeLeadForFollowUp(leadData) {
-  // Store lead data for 24-hour follow-up tracking
-  // In production, this would save to your preferred database
-  
-  const leadWithTimestamp = {
-    ...leadData,
-    submitted_at: new Date().toISOString(),
-    follow_up_sent: false,
-    manually_contacted: false
-  };
-  
-  // TODO: Implement database storage
-  // Examples:
-  // - MongoDB: db.leads.insertOne(leadWithTimestamp)
-  // - PostgreSQL: INSERT INTO leads VALUES (...)
-  // - Firebase: firebase.database().ref('leads').push(leadWithTimestamp)
-  
-  // For now, we'll log the data that would be stored
-  console.log('Lead stored for 24-hour follow-up tracking:', leadWithTimestamp);
-  
-  // In a real implementation, you would return the lead ID
-  return { id: 'temp-id', ...leadWithTimestamp };
 }

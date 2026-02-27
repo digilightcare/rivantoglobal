@@ -8,7 +8,8 @@
     "build": "echo 'Build complete'"
   },
   "dependencies": {
-    "resend": "^3.0.0"
+    "resend": "^3.0.0",
+    "firebase-admin": "^12.0.0"
   },
   "devDependencies": {},
   "keywords": ["hospitality", "revenue", "architecture", "consulting"],
