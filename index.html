@@ -606,11 +606,32 @@ Our strategy team is reviewing your submission and will connect with you shortly
                         });
 
                         if (response.ok) {
-                            // GA4 event
+                            // Lead Quality Tracking
+                            function getLeadQualityFromRooms(roomsText) {
+                              if (!roomsText) return "unknown";
+
+                              if (roomsText.includes("8-15")) return "emerging";
+                              if (roomsText.includes("16-30")) return "growth";
+                              if (roomsText.includes("31-50")) return "scale";
+                              if (roomsText.includes("50+")) return "premium";
+
+                              return "unknown";
+                            }
+
+                            // Capture selected dropdown value
+                            const roomsDropdown = document.querySelector('[name="rooms"]');
+                            const selectedRoomsText = roomsDropdown ? roomsDropdown.value : "";
+
+                            const leadQuality = getLeadQualityFromRooms(selectedRoomsText);
+
+                            // GA4 event with lead quality tracking
                             if (typeof gtag !== 'undefined') {
                                 gtag('event', 'lead_form_submit', {
                                     event_category: 'engagement',
-                                    event_label: 'Revenue Strategy Form'
+                                    event_label: 'Revenue Strategy Form',
+                                    lead_type: 'form',
+                                    lead_quality: leadQuality,
+                                    rooms_segment: selectedRoomsText
                                 });
                             }
 
