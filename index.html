@@ -718,6 +718,22 @@ Our strategy team is reviewing your submission and will connect with you shortly
                                 });
                             }
 
+                            // HIGH VALUE LEAD ALERT — Trigger instant notification for premium leads
+                            if (revenueTier === "High") {
+                                fetch("/.netlify/functions/high-value-lead", {
+                                    method: "POST",
+                                    headers: {
+                                        "Content-Type": "application/json"
+                                    },
+                                    body: JSON.stringify({
+                                        rooms_segment: selectedRoomsText,
+                                        lead_quality: leadQuality,
+                                        revenue_tier: revenueTier,
+                                        page: window.location.href
+                                    })
+                                }).catch(err => console.log('High-value alert sent'));
+                            }
+
                             // STEP 5 — Delay WhatsApp Redirect (CRITICAL)
                             setTimeout(() => {
                                 // FUNNEL STEP 4 — Track WhatsApp Click BEFORE redirect
