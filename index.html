@@ -695,14 +695,25 @@ Our strategy team is reviewing your submission and will connect with you shortly
 
                             const leadQuality = getLeadQualityFromRooms(selectedRoomsText);
 
+                            // Calculate Revenue Tier based on rooms and quality
+                            let revenueTier = "Low";
+
+                            if (selectedRoomsText === "50+ Rooms" && leadQuality === "premium") {
+                                revenueTier = "High";
+                            }
+                            else if (selectedRoomsText === "31-50 Rooms" || leadQuality === "growth") {
+                                revenueTier = "Medium";
+                            }
+
                             // STEP 4 — Fire GA4 Event FIRST with beacon transport
                             if (typeof gtag !== 'undefined') {
                                 gtag('event', 'lead_form_submit', {
                                     event_category: 'engagement',
                                     event_label: 'Revenue Strategy Form',
-                                    lead_type: 'form',
+                                    lead_type: 'hotel',
                                     lead_quality: leadQuality,
                                     rooms_segment: selectedRoomsText,
+                                    revenue_tier: revenueTier,
                                     transport_type: 'beacon'
                                 });
                             }
