@@ -3,24 +3,31 @@ exports.handler = async (event) => {
   try {
     const data = JSON.parse(event.body);
 
-    const message = `
-🔥 HIGH VALUE LEAD ALERT 🔥
+    const message = `🔥 HIGH VALUE LEAD ALERT 🔥
 
 Revenue Tier: ${data.revenue_tier}
 Rooms Segment: ${data.rooms_segment}
 Lead Quality: ${data.lead_quality}
 
 Page:
-${data.page}
-    `;
+${data.page}`;
 
-    // Send WhatsApp alert using CallMeBot API
-    // Replace PHONE_NUMBER and API_KEY with your actual credentials
-    const whatsappUrl = `https://api.callmebot.com/whatsapp.php?phone=${process.env.ALERT_PHONE_NUMBER}&text=${encodeURIComponent(message)}&apikey=${process.env.CALLMEBOT_API_KEY}`;
+    // Send Telegram alert using Telegram Bot API
+    const telegramUrl = `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`;
     
-    await fetch(whatsappUrl);
+    await fetch(telegramUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        chat_id: process.env.TELEGRAM_CHAT_ID,
+        text: message,
+        parse_mode: 'HTML'
+      })
+    });
 
-    console.log('High-value lead alert sent:', data);
+    console.log('High-value lead Telegram alert sent:', data);
 
     return {
       statusCode: 200,
