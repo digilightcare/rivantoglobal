@@ -298,7 +298,10 @@
                     <textarea name="message" placeholder="Message (Optional)"></textarea>
                 </div>
 
-                <button type="submit" class="primary-btn form-submit">Request Strategy Call</button>
+                <button type="submit" class="primary-btn form-submit" id="submitButton">Request Strategy Call</button>
+                <div id="formProcessingMsg" style="margin-top:10px;font-size:14px;color:#666;display:none;">
+                    Connecting you to strategy team...
+                </div>
             </form>
             
             <div class="form-success" style="display:none;">
@@ -606,43 +609,67 @@ Our strategy team is reviewing your submission and will connect with you shortly
                         });
 
                         if (response.ok) {
-                            // Lead Quality Tracking Function
-                            function getLeadQualityFromRooms(roomsText) {
-                              if (!roomsText || roomsText === 'unknown') return "unknown";
+                            // STEP 1 — Show submit loader immediately
+                            const submitBtn = document.querySelector('#submitButton');
+                            submitBtn.innerText = "Processing...";
+                            submitBtn.disabled = true;
+                            submitBtn.style.opacity = "0.7";
+                            submitBtn.style.cursor = "not-allowed";
+                            
+                            document.getElementById("formProcessingMsg").style.display = "block";
 
-                              if (roomsText.includes("8-15")) return "emerging";
-                              if (roomsText.includes("16-30")) return "growth";
-                              if (roomsText.includes("31-50")) return "scale";
-                              if (roomsText.includes("50+")) return "premium";
+                            // STEP 2 — Capture Rooms Dropdown Text Properly
+                            const roomsDropdown = document.querySelector('select[name="rooms"]');
 
-                              return "unknown";
+                            const selectedRoomsText =
+                                roomsDropdown && roomsDropdown.selectedIndex > -1
+                                    ? roomsDropdown.options[roomsDropdown.selectedIndex].text.trim()
+                                    : 'unknown';
+
+                            // STEP 3 — Map Lead Quality
+                            function getLeadQualityFromRooms(text) {
+                                if (!text) return 'unknown';
+
+                                if (text.includes('8-15')) return 'emerging';
+                                if (text.includes('16-30')) return 'growth';
+                                if (text.includes('31-50')) return 'scale';
+                                if (text.includes('50+')) return 'premium';
+
+                                return 'unknown';
                             }
 
-                            // Capture selected dropdown value using .text for option text
-                            const roomsDropdown = document.querySelector('[name="rooms"]');
-                            const selectedRoomsText = roomsDropdown && roomsDropdown.selectedIndex > -1 ? 
-                                roomsDropdown.options[roomsDropdown.selectedIndex].text : 'unknown';
-                            
                             const leadQuality = getLeadQualityFromRooms(selectedRoomsText);
 
-                            // GA4 event with lead quality tracking - EXISTING lead_form_submit event
+                            // STEP 4 — Fire GA4 Event FIRST with beacon transport
                             if (typeof gtag !== 'undefined') {
                                 gtag('event', 'lead_form_submit', {
                                     event_category: 'engagement',
                                     event_label: 'Revenue Strategy Form',
                                     lead_type: 'form',
                                     lead_quality: leadQuality,
-                                    rooms_segment: selectedRoomsText
+                                    rooms_segment: selectedRoomsText,
+                                    transport_type: 'beacon'
                                 });
                             }
 
-                            // Open WhatsApp
-                            const whatsappMessage = `Hi Rivanto, I just requested a revenue strategy call.\n\nName: ${formData.name}\nHotel: ${formData.company}\nPhone: ${formData.phone}`;
-                            window.open(`https://wa.me/919548838588?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
+                            // STEP 5 — Delay WhatsApp Redirect (CRITICAL)
+                            setTimeout(() => {
+                                // Open WhatsApp
+                                const whatsappMessage = `Hi Rivanto, I just requested a revenue strategy call.\n\nName: ${formData.name}\nHotel: ${formData.company}\nPhone: ${formData.phone}`;
+                                window.open(`https://wa.me/919548838588?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
 
-                            alert("Thank you! Our team will contact you shortly.");
+                                alert("Thank you! Our team will contact you shortly.");
 
-                            form.reset();
+                                form.reset();
+                                
+                                // Reset button state
+                                submitBtn.innerText = "Request Strategy Call";
+                                submitBtn.disabled = false;
+                                submitBtn.style.opacity = "1";
+                                submitBtn.style.cursor = "pointer";
+                                document.getElementById("formProcessingMsg").style.display = "none";
+
+                            }, 600);
 
                         } else {
                             const text = await response.text();
