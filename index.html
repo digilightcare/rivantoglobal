@@ -606,9 +606,9 @@ Our strategy team is reviewing your submission and will connect with you shortly
                         });
 
                         if (response.ok) {
-                            // Lead Quality Tracking
+                            // Lead Quality Tracking Function
                             function getLeadQualityFromRooms(roomsText) {
-                              if (!roomsText) return "unknown";
+                              if (!roomsText || roomsText === 'unknown') return "unknown";
 
                               if (roomsText.includes("8-15")) return "emerging";
                               if (roomsText.includes("16-30")) return "growth";
@@ -618,13 +618,14 @@ Our strategy team is reviewing your submission and will connect with you shortly
                               return "unknown";
                             }
 
-                            // Capture selected dropdown value
+                            // Capture selected dropdown value using .text for option text
                             const roomsDropdown = document.querySelector('[name="rooms"]');
-                            const selectedRoomsText = roomsDropdown ? roomsDropdown.value : "";
-
+                            const selectedRoomsText = roomsDropdown && roomsDropdown.selectedIndex > -1 ? 
+                                roomsDropdown.options[roomsDropdown.selectedIndex].text : 'unknown';
+                            
                             const leadQuality = getLeadQualityFromRooms(selectedRoomsText);
 
-                            // GA4 event with lead quality tracking
+                            // GA4 event with lead quality tracking - EXISTING lead_form_submit event
                             if (typeof gtag !== 'undefined') {
                                 gtag('event', 'lead_form_submit', {
                                     event_category: 'engagement',
