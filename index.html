@@ -587,28 +587,35 @@ Our strategy team is reviewing your submission and will connect with you shortly
             const form = document.querySelector('form[data-netlify="true"]:not([hidden])');
             const successMessage = document.querySelector('.form-success');
 
-            // FUNNEL STEP 1 — Track Form View (fires once per session)
+            // RELIABLE FALLBACK — Track Form View on page load (guaranteed firing)
+            const formSection = document.querySelector("#qualification");
+            
+            if (formSection && !sessionStorage.getItem("form_view_tracked")) {
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'form_view', {
+                        event_category: 'engagement',
+                        event_label: 'Revenue Strategy Form',
+                        transport_type: 'beacon'
+                    });
+                }
+                sessionStorage.setItem("form_view_tracked", "true");
+            }
+
+            // OPTIONAL — IntersectionObserver for scroll-based tracking (backup)
             if (form && !sessionStorage.getItem('form_viewed')) {
-                const formSection = document.querySelector('#qualification');
+                const formSectionObserver = document.querySelector('#qualification');
                 
                 const formViewObserver = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting && !sessionStorage.getItem('form_viewed')) {
-                            // Fire form_view event
-                            if (typeof gtag !== 'undefined') {
-                                gtag('event', 'form_view', {
-                                    event_category: 'engagement',
-                                    event_label: 'Revenue Strategy Form View'
-                                });
-                            }
                             sessionStorage.setItem('form_viewed', 'true');
-                            formViewObserver.disconnect(); // Stop observing after first view
+                            formViewObserver.disconnect();
                         }
                     });
-                }, { threshold: 0.5 }); // Fire when 50% of form is visible
+                }, { threshold: 0.5 });
 
-                if (formSection) {
-                    formViewObserver.observe(formSection);
+                if (formSectionObserver) {
+                    formViewObserver.observe(formSectionObserver);
                 }
             }
 
