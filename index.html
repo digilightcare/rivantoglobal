@@ -587,6 +587,54 @@ Our strategy team is reviewing your submission and will connect with you shortly
             const form = document.querySelector('form[data-netlify="true"]:not([hidden])');
             const successMessage = document.querySelector('.form-success');
 
+            // FUNNEL STEP 1 — Track Form View (fires once per session)
+            if (form && !sessionStorage.getItem('form_viewed')) {
+                const formSection = document.querySelector('#qualification');
+                
+                const formViewObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting && !sessionStorage.getItem('form_viewed')) {
+                            // Fire form_view event
+                            if (typeof gtag !== 'undefined') {
+                                gtag('event', 'form_view', {
+                                    event_category: 'engagement',
+                                    event_label: 'Revenue Strategy Form View'
+                                });
+                            }
+                            sessionStorage.setItem('form_viewed', 'true');
+                            formViewObserver.disconnect(); // Stop observing after first view
+                        }
+                    });
+                }, { threshold: 0.5 }); // Fire when 50% of form is visible
+
+                if (formSection) {
+                    formViewObserver.observe(formSection);
+                }
+            }
+
+            // FUNNEL STEP 2 — Track Form Start (when user interacts with first field)
+            if (form && !sessionStorage.getItem('form_started')) {
+                const firstInput = form.querySelector('input, select, textarea');
+                
+                if (firstInput) {
+                    const trackFormStart = () => {
+                        if (!sessionStorage.getItem('form_started')) {
+                            if (typeof gtag !== 'undefined') {
+                                gtag('event', 'form_start', {
+                                    event_category: 'engagement',
+                                    event_label: 'Revenue Strategy Form Start'
+                                });
+                            }
+                            sessionStorage.setItem('form_started', 'true');
+                        }
+                    };
+
+                    // Track on focus or input
+                    firstInput.addEventListener('focus', trackFormStart, { once: true });
+                    firstInput.addEventListener('input', trackFormStart, { once: true });
+                }
+            }
+
             if (form) {
                 form.addEventListener('submit', async function(e) {
                     e.preventDefault();
@@ -654,6 +702,17 @@ Our strategy team is reviewing your submission and will connect with you shortly
 
                             // STEP 5 — Delay WhatsApp Redirect (CRITICAL)
                             setTimeout(() => {
+                                // FUNNEL STEP 4 — Track WhatsApp Click BEFORE redirect
+                                if (typeof gtag !== 'undefined') {
+                                    gtag('event', 'whatsapp_click', {
+                                        event_category: 'conversion',
+                                        event_label: 'Strategy WhatsApp Click',
+                                        lead_quality: leadQuality,
+                                        rooms_segment: selectedRoomsText,
+                                        transport_type: 'beacon'
+                                    });
+                                }
+
                                 // Open WhatsApp
                                 const whatsappMessage = `Hi Rivanto, I just requested a revenue strategy call.\n\nName: ${formData.name}\nHotel: ${formData.company}\nPhone: ${formData.phone}`;
                                 window.open(`https://wa.me/919548838588?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
